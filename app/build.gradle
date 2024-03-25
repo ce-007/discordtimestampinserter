@@ -39,7 +39,7 @@ android {
     composeOptions {
         kotlinCompilerExtensionVersion = "1.4.4"
     }
-    namespace 'com.example.composeime'
+    namespace 'org.quicksc0p3r.discordtimestamp'
 }
 
 dependencies {
