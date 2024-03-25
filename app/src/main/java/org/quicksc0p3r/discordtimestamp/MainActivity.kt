@@ -7,7 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
-import androidx.compose.material.*
+import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -15,15 +15,15 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import org.quicksc0p3r.discordtimestamp.ui.ComposeIMETheme
+import org.quicksc0p3r.discordtimestamp.ui.theme.DiscordTimestampInserterTheme
 import splitties.systemservices.inputMethodManager
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            ComposeIMETheme {
-                Surface(color = MaterialTheme.colors.background) {
+            DiscordTimestampInserterTheme {
+                Surface(color = MaterialTheme.colorScheme.background) {
                     Column {
                         Options()
                         Spacer(modifier = Modifier.weight(1f))
