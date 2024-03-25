@@ -1,4 +1,4 @@
-package com.example.composeime.ui
+package org.quicksc0p3r.discordtimestamp.ui
 
 import androidx.compose.ui.graphics.Color
 

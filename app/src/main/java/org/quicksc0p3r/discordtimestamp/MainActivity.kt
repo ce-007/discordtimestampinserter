@@ -1,4 +1,4 @@
-package com.example.composeime
+package org.quicksc0p3r.discordtimestamp
 
 import android.content.Intent
 import android.os.Bundle
@@ -15,7 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.unit.dp
-import com.example.composeime.ui.ComposeIMETheme
+import org.quicksc0p3r.discordtimestamp.ui.ComposeIMETheme
 import splitties.systemservices.inputMethodManager
 
 class MainActivity : AppCompatActivity() {

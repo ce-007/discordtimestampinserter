@@ -1,6 +1,5 @@
-package com.example.composeime
+package org.quicksc0p3r.discordtimestamp
 
-import android.inputmethodservice.InputMethodService
 import android.view.View
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistry

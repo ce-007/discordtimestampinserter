@@ -1,4 +1,4 @@
-package com.example.composeime
+package org.quicksc0p3r.discordtimestamp
 
 import android.content.Context
 import androidx.compose.runtime.Composable

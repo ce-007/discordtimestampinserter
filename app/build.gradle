@@ -7,7 +7,7 @@ android {
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.composeime"
+        applicationId "org.quicksc0p3r.discordtimestamp"
         minSdk 21
         targetSdk 32
         versionCode 1
