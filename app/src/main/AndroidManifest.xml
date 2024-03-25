@@ -22,7 +22,7 @@
 
         <service
             android:name="org.quicksc0p3r.discordtimestamp.IMEService"
-            android:label="Example Comopose IME"
+            android:label="@string/app_name"
 
             android:permission="android.permission.BIND_INPUT_METHOD"
             android:exported="false">
