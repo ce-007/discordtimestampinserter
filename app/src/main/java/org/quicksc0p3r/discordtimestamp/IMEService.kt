@@ -39,7 +39,7 @@ class IMEService : LifecycleInputMethodService(),
     //ViewModelStore Methods
     private val store = ViewModelStore()
 
-    //SaveStateRegestry Methods
+    //SaveStateRegistry Methods
 
     private val savedStateRegistryController = SavedStateRegistryController.create(this)
 
