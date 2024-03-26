@@ -7,6 +7,8 @@ import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.ToggleOn
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
@@ -19,44 +21,31 @@ import org.quicksc0p3r.discordtimestamp.ui.theme.DiscordTimestampInserterTheme
 import splitties.systemservices.inputMethodManager
 
 class MainActivity : AppCompatActivity() {
+    @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             DiscordTimestampInserterTheme {
                 Surface(color = MaterialTheme.colorScheme.background) {
-                    Column {
-                        Options()
-                        Spacer(modifier = Modifier.weight(1f))
+                    Scaffold(
+                        topBar = { TopAppBar(title = { Text("Discord Timestamp Inserter") }) }
+                    ) { padding ->
+                        Column(
+                            modifier = Modifier
+                                .padding(padding)
+                                .fillMaxSize()
+                        ) {
+                            val context = LocalContext.current
+                            ExtendedFloatingActionButton(
+                                text = { Text("Enable input method") },
+                                icon = {
+                                    Icon(Icons.Rounded.ToggleOn, null)
+                                },
+                                onClick = { context.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS)) })
+                        }
                     }
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Options() {
-    Column(
-        Modifier
-            .padding(16.dp)
-            .fillMaxWidth()
-    ) {
-        val ctx = LocalContext.current
-        Text(text = "Compose Keyboard")
-        val (text, setValue) = remember { mutableStateOf(TextFieldValue("Try here")) }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(modifier = Modifier.fillMaxWidth(), onClick = {
-            ctx.startActivity(Intent(Settings.ACTION_INPUT_METHOD_SETTINGS))
-        }) {
-            Text(text = "Enable IME")
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        Button(modifier = Modifier.fillMaxWidth(), onClick = {
-            inputMethodManager.showInputMethodPicker()
-        }) {
-            Text(text = "Select IME")
-        }
-        Spacer(modifier = Modifier.height(16.dp))
-        TextField(value = text, onValueChange = setValue, modifier = Modifier.fillMaxWidth())
     }
 }
