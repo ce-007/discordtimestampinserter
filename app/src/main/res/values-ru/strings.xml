@@ -1,0 +1,20 @@
+<resources>
+    <string name="short_time">Краткое время</string>
+    <string name="long_time">Длинное время</string>
+    <string name="short_date">Краткая дата</string>
+    <string name="long_date">Длинная дата</string>
+    <string name="short_date_time">Краткие дата/время</string>
+    <string name="long_date_time">Длинные дата/время</string>
+    <string name="relative">Относительная отметка</string>
+    <string name="next">Далее</string>
+    <string name="done">Готово</string>
+    <string name="about">О приложении</string>
+    <string name="back">Назад</string>
+    <string name="version">Версия %1$s</string>
+    <string name="original_project">Ориг. проект</string>
+    <string name="this_project">Этот проект</string>
+    <string name="license">Лицензия</string>
+    <string name="credits">Сделано quicksc0p3r и |контрибьюторами|</string>
+    <string name="contributors">Контрибьюторы</string>
+    <string name="close">Закрыть</string>
+</resources>
