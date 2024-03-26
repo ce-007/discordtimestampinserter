@@ -1,5 +1,9 @@
 package org.quicksc0p3r.discordtimestamp
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
+import android.provider.Settings
 import android.view.View
 import androidx.lifecycle.*
 import androidx.savedstate.SavedStateRegistry
@@ -21,8 +25,6 @@ class IMEService : LifecycleInputMethodService(),
         }
         return view
     }
-
-
 
     override fun onCreate() {
         super.onCreate()
