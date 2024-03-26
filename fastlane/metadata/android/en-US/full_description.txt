@@ -1,0 +1,6 @@
+Based on https://github.com/THEAccess/compose-keyboard-ime
+
+Libraries used:
+- AndroidX (Compose, Lifecycle, AppCompat, Navigation)
+- Google Accompanist
+- KotlinX Date/Time
