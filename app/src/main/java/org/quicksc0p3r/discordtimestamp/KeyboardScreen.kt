@@ -1,16 +1,12 @@
 package org.quicksc0p3r.discordtimestamp
 
 import androidx.compose.animation.Crossfade
-import androidx.compose.animation.animateContentSize
-import androidx.compose.animation.core.spring
-import androidx.compose.animation.core.tween
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerState
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -19,7 +15,6 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerState
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
@@ -85,7 +80,7 @@ fun KeyboardScreen() {
                         trailingContent = {
                             TextButton(onClick = {
                                 if (currentScreen == CurrentScreen.TIME_PICKER_NEXT_DATE)
-                                    currentScreen = CurrentScreen.DATE_PICKER_PREV_TIME
+                                    currentScreen = CurrentScreen.DATE_PICKER
                                 else {
                                     constructTimestamp = true
                                     currentScreen = CurrentScreen.MENU
@@ -97,7 +92,7 @@ fun KeyboardScreen() {
                         headlineContent = {}
                     )
                 }
-            CurrentScreen.DATE_PICKER_PREV_TIME ->
+            CurrentScreen.DATE_PICKER ->
                 Column(
                     modifier = Modifier
                         .background(MaterialTheme.colorScheme.primaryContainer)

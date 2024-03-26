@@ -4,5 +4,5 @@ enum class CurrentScreen {
     MENU,
     TIME_PICKER_NEXT_DATE,
     TIME_PICKER_NEXT_MENU,
-    DATE_PICKER_PREV_TIME
+    DATE_PICKER
 }

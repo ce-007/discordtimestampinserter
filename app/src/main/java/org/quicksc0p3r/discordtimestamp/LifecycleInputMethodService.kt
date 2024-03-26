@@ -3,7 +3,6 @@ package org.quicksc0p3r.discordtimestamp
 import android.content.Intent
 import android.inputmethodservice.InputMethodService
 import androidx.annotation.CallSuper
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ServiceLifecycleDispatcher
 
