@@ -9,7 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -18,9 +17,9 @@ import androidx.compose.ui.unit.dp
 fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (TimestampType) -> Unit) {
     Column(
         modifier = Modifier
-            .background(MaterialTheme.colorScheme.primaryContainer)
+            .background(MaterialTheme.colorScheme.background)
             .fillMaxWidth()
-            .defaultMinSize(minHeight = 300.dp),
+            .defaultMinSize(minHeight = 250.dp),
         verticalArrangement = Arrangement.SpaceEvenly
     ) {
         Row(
@@ -33,7 +32,7 @@ fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (Tim
             } ) {
                 Text("Short time")
             }
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_MENU)
                 changeTimestampType(TimestampType.LONG_TIME)
             } ) {
@@ -44,13 +43,13 @@ fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (Tim
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.SHORT_DATE)
             } ) {
                 Text("Short date")
             }
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.LONG_DATE)
             } ) {
@@ -61,13 +60,13 @@ fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (Tim
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.SHORT_TIME_DATE)
             } ) {
                 Text("Short date/time")
             }
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.LONG_TIME_DATE)
             } ) {
@@ -78,7 +77,7 @@ fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (Tim
             modifier = Modifier.fillMaxWidth(),
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            TextButton(onClick = {
+            FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.RELATIVE)
             } ) {

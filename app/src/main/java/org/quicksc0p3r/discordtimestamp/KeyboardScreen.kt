@@ -63,7 +63,7 @@ fun KeyboardScreen() {
             CurrentScreen.TIME_PICKER_NEXT_MENU, CurrentScreen.TIME_PICKER_NEXT_DATE ->
                 Column(
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer)
+                        .background(MaterialTheme.colorScheme.background)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
@@ -95,7 +95,7 @@ fun KeyboardScreen() {
             CurrentScreen.DATE_PICKER ->
                 Column(
                     modifier = Modifier
-                        .background(MaterialTheme.colorScheme.primaryContainer)
+                        .background(MaterialTheme.colorScheme.background)
                         .fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
