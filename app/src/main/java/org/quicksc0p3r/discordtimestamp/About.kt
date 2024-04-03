@@ -71,7 +71,8 @@ fun About(navController: NavController) {
                     Text(stringResource(R.string.close))
                 }
             },
-            title = { Text(stringResource(R.string.contributors)) }
+            title = { Text(stringResource(R.string.contributors)) },
+            text = { Text(CONTRIBUTORS) }
         )
     Scaffold(
         topBar = { TopAppBar(
