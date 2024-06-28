@@ -17,4 +17,5 @@
     <string name="credits">Сделано quicksc0p3r и |контрибьюторами|</string>
     <string name="contributors">Контрибьюторы</string>
     <string name="close">Закрыть</string>
+    <string name="choose_input_method">Выбор метода ввода</string>
 </resources>
