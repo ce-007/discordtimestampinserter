@@ -2,6 +2,7 @@ package org.quicksc0p3r.discordtimestamp
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.material3.*
 import androidx.compose.runtime.Composable
@@ -12,6 +13,7 @@ import org.quicksc0p3r.discordtimestamp.ui.theme.DiscordTimestampInserterTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
             DiscordTimestampInserterTheme {
