@@ -4,11 +4,15 @@ An input method for quickly inserting Discord timestamps (more info [here](https
 
 Based on [THEAccess/compose-keyboard-ime](https://github.com/THEAccess/compose-keyboard-ime).
 
+Download the latest APK from the [releases section](https://github.com/quicksc0p3r/discordtimestampinserter/releases/latest).
+
+Or:
+
 [<img src="https://fdroid.gitlab.io/artwork/badge/get-it-on.png"
      alt="Get it on F-Droid"
      height="80">](https://f-droid.org/packages/org.quicksc0p3r.discordtimestamp/)
 
-Or download the latest APK from the [Releases Section](https://github.com/quicksc0p3r/discordtimestampinserter/releases/latest).
+(not recommended because of outdated version)
 
 # Libraries used
 - [AndroidX](https://github.com/androidx/androidx) (Compose, Lifecycle, AppCompat, Navigation)
