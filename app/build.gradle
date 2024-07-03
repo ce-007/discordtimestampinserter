@@ -10,8 +10,8 @@ android {
         applicationId "org.quicksc0p3r.discordtimestamp"
         minSdk 21
         targetSdk 35
-        versionCode 1000001
-        versionName "1.0.1"
+        versionCode 1000002
+        versionName "1.0.2"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
