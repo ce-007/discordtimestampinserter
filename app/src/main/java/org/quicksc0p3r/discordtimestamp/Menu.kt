@@ -95,24 +95,19 @@ fun Menu(changeCurrentScreen: (CurrentScreen) -> Unit, changeTimestampType: (Tim
         }
         Row(
             modifier = Modifier.fillMaxWidth(),
-            horizontalArrangement = Arrangement.SpaceBetween
+            horizontalArrangement = Arrangement.SpaceEvenly
         ) {
-            IconButton(onClick = {}, enabled = false) {} // Workaround for proper centering
             FilledTonalButton(onClick = {
                 changeCurrentScreen(CurrentScreen.TIME_PICKER_NEXT_DATE)
                 changeTimestampType(TimestampType.RELATIVE)
             } ) {
                 Text("Relative")
             }
-            TooltipBox(
-                modifier = Modifier.padding(end = 5.dp),
-                positionProvider = TooltipDefaults.rememberPlainTooltipPositionProvider(),
-                tooltip = { PlainTooltip { Text(stringResource(R.string.choose_input_method)) } },
-                state = rememberTooltipState()
-            ) {
-                IconButton(onClick = { inputMethodManager.showInputMethodPicker() }) {
-                    Icon(imageVector = Icons.Rounded.Keyboard, contentDescription = stringResource(R.string.choose_input_method))
-                }
+            FilledTonalButton(onClick = {
+                changeCurrentScreen(CurrentScreen.KEYBOARD)
+                changeTimestampType(TimestampType.REGULAR)
+            } ) {
+                Text("Keyboard")
             }
         }
     }

@@ -7,5 +7,6 @@ enum class TimestampType {
     LONG_DATE,
     SHORT_TIME_DATE,
     LONG_TIME_DATE,
-    RELATIVE
+    RELATIVE,
+    REGULAR
 }
