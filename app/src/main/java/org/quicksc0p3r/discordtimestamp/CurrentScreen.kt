@@ -6,5 +6,6 @@ enum class CurrentScreen {
     TIME_PICKER_NEXT_MENU,
     DATE_PICKER,
     KEYBOARD,
-    KEYBOARD_UPPER
+    KEYBOARD_UPPER,
+    KEYBOARD_NUMBERS
 }

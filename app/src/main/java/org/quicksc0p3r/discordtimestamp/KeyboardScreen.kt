@@ -39,6 +39,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
@@ -48,13 +50,14 @@ import androidx.compose.ui.unit.sp
 @Composable
 fun KeyboardScreen() {
     val keysMatrix = arrayOf(
-        arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "9"),
+        arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("q", "w", "e", "r", "t", "y", "u", "i", "o", "p"),
         arrayOf("a", "s", "d", "f", "g", "h", "j", "k", "l"),
-        arrayOf("^", "z", "x", "c", "v", "b", "n", "m", "<")
+        arrayOf("^", "z", "x", "c", "v", "b", "n", "m", "<"),
+        arrayOf("?123", ",", " ", " ", ".", "\uD83D\uDD0D")
     )
     val keysMatrixUpper = arrayOf(
-        arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "9"),
+        arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"),
         arrayOf("A", "S", "D", "F", "G", "H", "J", "K", "L"),
         arrayOf("^", "Z", "X", "C", "V", "B", "N", "M", "<")
@@ -153,7 +156,7 @@ fun KeyboardScreen() {
                         headlineContent = {}
                     )
                 }
-            //todo add current screen for regular keyboard here
+
             CurrentScreen.KEYBOARD ->
                 Column(
                     modifier = Modifier
@@ -161,23 +164,75 @@ fun KeyboardScreen() {
                         .fillMaxWidth()
                 ) {
                     IconButton(onClick = { currentScreen = CurrentScreen.MENU }) {
-                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, null)
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, null, tint = Color.White)
                     }
                     keysMatrix.forEach { row ->
-                        FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 56.dp) {
+                        FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 40.dp) {
                             Row(Modifier) {
                                 val ctx = LocalContext.current
                                 row.forEach { key ->
                                     if (key == "^") {
-                                        IconButton(onClick = {
-                                            currentScreen = CurrentScreen.KEYBOARD_UPPER
-                                        }) {
-                                            Icon(Icons.AutoMirrored.Rounded.ArrowForward, null)
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD_UPPER
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            Text(
+                                                text = key.toString(),
+                                                style = TextStyle(
+                                                    fontSize = 24.sp,
+                                                    color = Color.White
+                                                )
+                                            )
                                         }
                                     } else if (key == "<") {
-                                        IconButton(onClick = {
-                                        }) {
-                                            Icon(Icons.AutoMirrored.Rounded.ArrowBack, null)
+                                        IconButton(
+                                            onClick = {
+                                                (ctx as IMEService).currentInputConnection.deleteSurroundingText(
+                                                    1,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            Text(
+                                                text = key.toString(),
+                                                style = TextStyle(
+                                                    fontSize = 24.sp,
+                                                    color = Color.White
+                                                )
+                                            )
+                                        }
+                                    } else if (key == "\uD83D\uDD0D") {
+                                        IconButton(
+                                            onClick = {
+                                                //fixme add enter function
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            Text(
+                                                text = key.toString(),
+                                                style = TextStyle(
+                                                    fontSize = 24.sp,
+                                                    color = Color.White
+                                                )
+                                            )
+                                        }
+                                    } else if (key == "?123") {
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD_NUMBERS
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            Text(
+                                                text = key.toString(),
+                                                style = TextStyle(
+                                                    fontSize = 24.sp,
+                                                    color = Color.White
+                                                )
+                                            )
                                         }
                                     } else {
                                         IconButton(
@@ -188,7 +243,7 @@ fun KeyboardScreen() {
                                                     key.length
                                                 )
                                             },
-                                            modifier = Modifier.size(40.dp)
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
                                             Text(
                                                 text = key.toString(),
@@ -227,6 +282,14 @@ fun KeyboardScreen() {
                     }*/
 
                 }
+
+            CurrentScreen.KEYBOARD_NUMBERS ->
+                Column(
+                    modifier = Modifier
+                        .background(MaterialTheme.colorScheme.background)
+                        .fillMaxWidth()
+                ) {
+                }
         }
     }
 }
@@ -241,59 +304,6 @@ fun FixedHeightBox(modifier: Modifier, height: Dp, content: @Composable () -> Un
         layout(constraints.maxWidth, h) {
             placeables.forEach { placeable ->
                 placeable.place(x = 0, y = kotlin.math.min(0, h - placeable.height))
-            }
-        }
-    }
-}
-
-@Composable
-fun KeyboardKey(
-    keyboardKey: String,
-    modifier: Modifier
-) {
-    val interactionSource = remember { MutableInteractionSource() }
-    val pressed = interactionSource.collectIsPressedAsState()
-    val ctx = LocalContext.current
-    Box(modifier = modifier.fillMaxHeight(), contentAlignment = Alignment.BottomCenter) {
-        Text(
-            keyboardKey,
-            Modifier
-                .fillMaxWidth()
-                .padding(2.dp)
-                .border(1.dp, Color.Black)
-                .clickable(interactionSource = interactionSource, indication = null) {
-                    (ctx as IMEService).currentInputConnection.commitText(
-                        keyboardKey,
-                        keyboardKey
-                            .length
-                    )
-                }
-                .background(Color.White)
-                .padding(
-                    start = 12.dp,
-                    end = 12.dp,
-                    top = 16.dp,
-                    bottom = 16.dp
-                )
-
-        )
-        if (pressed.value) {
-            if (keyboardKey == "^") {
-                //currentScreen = CurrentScreen.KEYBOARD_UPPER
-            } else {
-                Text(
-                    keyboardKey,
-                    Modifier
-                        .fillMaxWidth()
-                        .border(1.dp, Color.Black)
-                        .background(Color.White)
-                        .padding(
-                            start = 16.dp,
-                            end = 16.dp,
-                            top = 16.dp,
-                            bottom = 48.dp
-                        ),
-                )
             }
         }
     }
