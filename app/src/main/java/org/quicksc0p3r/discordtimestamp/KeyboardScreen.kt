@@ -1,10 +1,13 @@
 package org.quicksc0p3r.discordtimestamp
 
-import android.view.inputmethod.InputConnection
+import android.app.Activity
+import android.content.Context
+import android.util.Log
+import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowBack
 import androidx.compose.material3.DatePicker
@@ -26,25 +29,16 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
-import kotlinx.datetime.Clock
-import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
-import androidx.compose.foundation.layout.*
-import androidx.compose.material.icons.automirrored.rounded.ArrowForward
-import androidx.compose.material.icons.filled.Search
-import androidx.compose.material3.TextField
-import androidx.compose.runtime.MutableState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.platform.LocalConfiguration
-import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import kotlinx.datetime.Clock
+
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -207,7 +201,7 @@ fun KeyboardScreen() {
                                     } else if (key == "\uD83D\uDD0D") {
                                         IconButton(
                                             onClick = {
-                                                //fixme add enter function
+                                                hideKeyboard(context)
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
@@ -237,7 +231,6 @@ fun KeyboardScreen() {
                                     } else {
                                         IconButton(
                                             onClick = {
-                                                //fixme add char to text
                                                 (ctx as IMEService).currentInputConnection.commitText(
                                                     key,
                                                     key.length
@@ -306,5 +299,14 @@ fun FixedHeightBox(modifier: Modifier, height: Dp, content: @Composable () -> Un
                 placeable.place(x = 0, y = kotlin.math.min(0, h - placeable.height))
             }
         }
+    }
+}
+
+fun hideKeyboard(context: Context) {
+    if (context is IMEService) {
+        val inputConnection = context.currentInputConnection
+        inputConnection?.finishComposingText()
+        inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEARCH)
+        context.setInputView(null)
     }
 }
