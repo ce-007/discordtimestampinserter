@@ -1,5 +1,6 @@
 package org.quicksc0p3r.discordtimestamp
 
+import android.view.inputmethod.InputConnection
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
@@ -33,11 +34,15 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
+import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.Layout
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -46,13 +51,13 @@ fun KeyboardScreen() {
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "9"),
         arrayOf("q", "w", "e", "r", "t", "y", "u", "i", "o", "p"),
         arrayOf("a", "s", "d", "f", "g", "h", "j", "k", "l"),
-        arrayOf("^", "z", "x", "c", "v", "b", "n", "m", "<x")
+        arrayOf("^", "z", "x", "c", "v", "b", "n", "m", "<")
     )
     val keysMatrixUpper = arrayOf(
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "9"),
         arrayOf("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"),
         arrayOf("A", "S", "D", "F", "G", "H", "J", "K", "L"),
-        arrayOf("Z", "X", "C", "V", "B", "N", "M", ",", ".")
+        arrayOf("^", "Z", "X", "C", "V", "B", "N", "M", "<")
     )
 
     val context = LocalContext.current
@@ -155,16 +160,45 @@ fun KeyboardScreen() {
                         .background(MaterialTheme.colorScheme.background)
                         .fillMaxWidth()
                 ) {
+                    IconButton(onClick = { currentScreen = CurrentScreen.MENU }) {
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, null)
+                    }
                     keysMatrix.forEach { row ->
                         FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 56.dp) {
                             Row(Modifier) {
+                                val ctx = LocalContext.current
                                 row.forEach { key ->
-
-                                    KeyboardKey(
-                                        keyboardKey = key,
-                                        modifier = Modifier.weight(1f),
-                                        currentScreen
-                                    )
+                                    if (key == "^") {
+                                        IconButton(onClick = {
+                                            currentScreen = CurrentScreen.KEYBOARD_UPPER
+                                        }) {
+                                            Icon(Icons.AutoMirrored.Rounded.ArrowForward, null)
+                                        }
+                                    } else if (key == "<") {
+                                        IconButton(onClick = {
+                                        }) {
+                                            Icon(Icons.AutoMirrored.Rounded.ArrowBack, null)
+                                        }
+                                    } else {
+                                        IconButton(
+                                            onClick = {
+                                                //fixme add char to text
+                                                (ctx as IMEService).currentInputConnection.commitText(
+                                                    key,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size(40.dp)
+                                        ) {
+                                            Text(
+                                                text = key.toString(),
+                                                style = TextStyle(
+                                                    fontSize = 24.sp,
+                                                    color = Color.White
+                                                )
+                                            )
+                                        }
+                                    }
                                 }
 
                             }
@@ -179,19 +213,18 @@ fun KeyboardScreen() {
                         .fillMaxWidth()
                 ) {
 
-                    keysMatrix.forEach { row ->
+                    /*keysMatrix.forEach { row ->
                         FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 56.dp) {
                             Row(Modifier) {
                                 row.forEach { key ->
                                     KeyboardKey(
                                         keyboardKey = key,
-                                        modifier = Modifier.weight(1f),
-                                        currentScreen = currentScreen
+                                        modifier = Modifier.weight(1f)
                                     )
                                 }
                             }
                         }
-                    }
+                    }*/
 
                 }
         }
@@ -216,8 +249,7 @@ fun FixedHeightBox(modifier: Modifier, height: Dp, content: @Composable () -> Un
 @Composable
 fun KeyboardKey(
     keyboardKey: String,
-    modifier: Modifier,
-    currentScreen: CurrentScreen
+    modifier: Modifier
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val pressed = interactionSource.collectIsPressedAsState()

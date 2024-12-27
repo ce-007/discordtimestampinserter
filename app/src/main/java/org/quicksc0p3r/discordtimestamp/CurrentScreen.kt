@@ -1,8 +1,6 @@
 package org.quicksc0p3r.discordtimestamp
 
-import androidx.compose.runtime.MutableState
-
-enum class CurrentScreen : MutableState<CurrentScreen> {
+enum class CurrentScreen {
     MENU,
     TIME_PICKER_NEXT_DATE,
     TIME_PICKER_NEXT_MENU,
