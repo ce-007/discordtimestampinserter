@@ -40,9 +40,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
-import org.`ce-007`.discordtimestamp.ui.theme.Typography
-import org.quicksc0p3r.discordtimestamp.BuildConfig
-import org.quicksc0p3r.discordtimestamp.R
+import org.ce_007.keyboardwithdiscordtimestamp.ui.theme.Typography
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

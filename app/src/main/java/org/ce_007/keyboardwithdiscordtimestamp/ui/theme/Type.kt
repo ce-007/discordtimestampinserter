@@ -1,4 +1,4 @@
-package org.`ce-007`.discordtimestamp.ui.theme
+package org.ce_007.keyboardwithdiscordtimestamp.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

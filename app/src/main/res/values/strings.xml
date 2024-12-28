@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false" >Discord Timestamp Inserter</string>
+    <string name="app_name" translatable="false" >Keyboard + Discord Timestamp</string>
     <string name="short_time">Short time</string>
     <string name="long_time">Long time</string>
     <string name="short_date">Short date</string>

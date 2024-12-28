@@ -1,4 +1,4 @@
-package org.`ce-007`.discordtimestamp
+package org.ce_007.keyboardwithdiscordtimestamp
 
 import android.content.Context
 import android.view.inputmethod.EditorInfo
@@ -35,10 +35,6 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.datetime.Clock
-import org.ce_007.keyboardwithdiscordtimestamp.CurrentScreen
-import org.ce_007.keyboardwithdiscordtimestamp.IMEService
-import org.ce_007.keyboardwithdiscordtimestamp.Menu
-import org.ce_007.keyboardwithdiscordtimestamp.TimestampType
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -51,8 +47,7 @@ fun KeyboardScreen() {
         arrayOf("c^", "z", "x", "c", "v", "b", "n", "m", "b<"),
         arrayOf("?123", ",", " ", " ", ".", "\uD83D\uDD0D")
     )
-    val keysMatrixUpper: Array<Array<String>>
-    keysMatrixUpper = arrayOf(
+    val keysMatrixUpper = arrayOf(
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"),
         arrayOf("A", "S", "D", "F", "G", "H", "J", "K", "L"),
@@ -63,12 +58,12 @@ fun KeyboardScreen() {
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("%", "\\", "|", "=", "[", "]", "<", ">", "{", "}"),
         arrayOf("@", "#", "$", "_", "&", "-", "+", "(", ")", "/"),
-        arrayOf("c", "*", "\"", "'", ":", ";", "!", "?", "b<"),
+        arrayOf(" ", "*", "\"", "'", ":", ";", "!", "?", "b<"),
         arrayOf("abc", ",", " ", " ", ".", "\uD83D\uDD0D")
     )
 
     val context = LocalContext.current
-    var currentScreen by remember { mutableStateOf(CurrentScreen.MENU) }
+    var currentScreen by remember { mutableStateOf(CurrentScreen.KEYBOARD) }
     var timestampType by remember { mutableStateOf(TimestampType.SHORT_TIME) }
     var constructTimestamp by remember { mutableStateOf(false) }
     val timePickerState = rememberTimePickerState()

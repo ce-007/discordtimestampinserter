@@ -1,4 +1,4 @@
-package org.`ce-007`.discordtimestamp
+package org.ce_007.keyboardwithdiscordtimestamp
 
 import kotlinx.datetime.Clock
 import kotlinx.datetime.Instant.Companion.fromEpochMilliseconds
@@ -7,7 +7,6 @@ import kotlinx.datetime.TimeZone
 import kotlinx.datetime.toInstant
 import kotlinx.datetime.toLocalDateTime
 import kotlinx.datetime.todayIn
-import org.ce_007.keyboardwithdiscordtimestamp.TimestampType
 
 fun constructTimestamp(
     type: TimestampType,

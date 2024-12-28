@@ -17,5 +17,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "com.example.composeime"
+rootProject.name = "org.ce_007.keyboardwithdiscordtimestamp"
 include ':app'

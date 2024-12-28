@@ -22,7 +22,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.navigation.NavController
-import org.quicksc0p3r.discordtimestamp.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
