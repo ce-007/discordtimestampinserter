@@ -1,10 +1,7 @@
 package org.quicksc0p3r.discordtimestamp
 
-import android.app.Activity
 import android.content.Context
-import android.util.Log
 import android.view.inputmethod.EditorInfo
-import android.view.inputmethod.InputMethodManager
 import androidx.compose.animation.Crossfade
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
@@ -47,14 +44,23 @@ fun KeyboardScreen() {
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("q", "w", "e", "r", "t", "y", "u", "i", "o", "p"),
         arrayOf("a", "s", "d", "f", "g", "h", "j", "k", "l"),
-        arrayOf("^", "z", "x", "c", "v", "b", "n", "m", "<"),
+        arrayOf("c^", "z", "x", "c", "v", "b", "n", "m", "b<"),
         arrayOf("?123", ",", " ", " ", ".", "\uD83D\uDD0D")
     )
-    val keysMatrixUpper = arrayOf(
+    val keysMatrixUpper: Array<Array<String>>
+    keysMatrixUpper = arrayOf(
         arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
         arrayOf("Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"),
         arrayOf("A", "S", "D", "F", "G", "H", "J", "K", "L"),
-        arrayOf("^", "Z", "X", "C", "V", "B", "N", "M", "<")
+        arrayOf("c^", "Z", "X", "C", "V", "B", "N", "M", "b<"),
+        arrayOf("?123", ",", " ", " ", ".", "\uD83D\uDD0D")
+    )
+    val keysMatrixNumbers = arrayOf(
+        arrayOf("1", "2", "3", "4", "5", "6", "7", "8", "9", "0"),
+        arrayOf("%", "\\", "|", "=", "[", "]", "<", ">", "{", "}"),
+        arrayOf("@", "#", "$", "_", "&", "-", "+", "(", ")", "/"),
+        arrayOf("c", "*", "\"", "'", ":", ";", "!", "?", "b<"),
+        arrayOf("abc", ",", " ", " ", ".", "\uD83D\uDD0D")
     )
 
     val context = LocalContext.current
@@ -165,22 +171,16 @@ fun KeyboardScreen() {
                             Row(Modifier) {
                                 val ctx = LocalContext.current
                                 row.forEach { key ->
-                                    if (key == "^") {
+                                    if (key == "c^") {
                                         IconButton(
                                             onClick = {
                                                 currentScreen = CurrentScreen.KEYBOARD_UPPER
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
-                                            Text(
-                                                text = key.toString(),
-                                                style = TextStyle(
-                                                    fontSize = 24.sp,
-                                                    color = Color.White
-                                                )
-                                            )
+                                            GetText(key.substring(1))
                                         }
-                                    } else if (key == "<") {
+                                    } else if (key == "b<") {
                                         IconButton(
                                             onClick = {
                                                 (ctx as IMEService).currentInputConnection.deleteSurroundingText(
@@ -190,13 +190,7 @@ fun KeyboardScreen() {
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
-                                            Text(
-                                                text = key.toString(),
-                                                style = TextStyle(
-                                                    fontSize = 24.sp,
-                                                    color = Color.White
-                                                )
-                                            )
+                                            GetText(key.substring(1))
                                         }
                                     } else if (key == "\uD83D\uDD0D") {
                                         IconButton(
@@ -205,13 +199,7 @@ fun KeyboardScreen() {
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
-                                            Text(
-                                                text = key.toString(),
-                                                style = TextStyle(
-                                                    fontSize = 24.sp,
-                                                    color = Color.White
-                                                )
-                                            )
+                                            GetText(key)
                                         }
                                     } else if (key == "?123") {
                                         IconButton(
@@ -220,13 +208,7 @@ fun KeyboardScreen() {
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
-                                            Text(
-                                                text = key.toString(),
-                                                style = TextStyle(
-                                                    fontSize = 24.sp,
-                                                    color = Color.White
-                                                )
-                                            )
+                                            GetText(key)
                                         }
                                     } else {
                                         IconButton(
@@ -238,13 +220,7 @@ fun KeyboardScreen() {
                                             },
                                             modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
                                         ) {
-                                            Text(
-                                                text = key.toString(),
-                                                style = TextStyle(
-                                                    fontSize = 24.sp,
-                                                    color = Color.White
-                                                )
-                                            )
+                                            GetText(key)
                                         }
                                     }
                                 }
@@ -260,21 +236,73 @@ fun KeyboardScreen() {
                         .background(MaterialTheme.colorScheme.background)
                         .fillMaxWidth()
                 ) {
-
-                    /*keysMatrix.forEach { row ->
-                        FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 56.dp) {
+                    IconButton(onClick = { currentScreen = CurrentScreen.MENU }) {
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, null, tint = Color.White)
+                    }
+                    keysMatrixUpper.forEach { row ->
+                        FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 40.dp) {
                             Row(Modifier) {
+                                val ctx = LocalContext.current
                                 row.forEach { key ->
-                                    KeyboardKey(
-                                        keyboardKey = key,
-                                        modifier = Modifier.weight(1f)
-                                    )
+                                    if (key == "c^") {
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key.substring(1))
+                                        }
+                                    } else if (key == "b<") {
+                                        IconButton(
+                                            onClick = {
+                                                (ctx as IMEService).currentInputConnection.deleteSurroundingText(
+                                                    1,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key.substring(1))
+                                        }
+                                    } else if (key == "\uD83D\uDD0D") {
+                                        IconButton(
+                                            onClick = {
+                                                hideKeyboard(context)
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    } else if (key == "?123") {
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD_NUMBERS
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    } else {
+                                        IconButton(
+                                            onClick = {
+                                                (ctx as IMEService).currentInputConnection.commitText(
+                                                    key,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    }
                                 }
+
                             }
                         }
-                    }*/
-
+                    }
                 }
+
 
             CurrentScreen.KEYBOARD_NUMBERS ->
                 Column(
@@ -282,6 +310,71 @@ fun KeyboardScreen() {
                         .background(MaterialTheme.colorScheme.background)
                         .fillMaxWidth()
                 ) {
+                    IconButton(onClick = { currentScreen = CurrentScreen.MENU }) {
+                        Icon(Icons.AutoMirrored.Rounded.ArrowBack, null, tint = Color.White)
+                    }
+                    keysMatrixNumbers.forEach { row ->
+                        FixedHeightBox(modifier = Modifier.fillMaxWidth(), height = 40.dp) {
+                            Row(Modifier) {
+                                val ctx = LocalContext.current
+                                row.forEach { key ->
+                                    if (key == "c^") {
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD_UPPER
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key.substring(1))
+                                        }
+                                    } else if (key == "b<") {
+                                        IconButton(
+                                            onClick = {
+                                                (ctx as IMEService).currentInputConnection.deleteSurroundingText(
+                                                    1,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key.substring(1))
+                                        }
+                                    } else if (key == "\uD83D\uDD0D") {
+                                        IconButton(
+                                            onClick = {
+                                                hideKeyboard(context)
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    } else if (key == "abc") {
+                                        IconButton(
+                                            onClick = {
+                                                currentScreen = CurrentScreen.KEYBOARD
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    } else {
+                                        IconButton(
+                                            onClick = {
+                                                (ctx as IMEService).currentInputConnection.commitText(
+                                                    key,
+                                                    key.length
+                                                )
+                                            },
+                                            modifier = Modifier.size((LocalConfiguration.current.screenWidthDp / row.size).dp)
+                                        ) {
+                                            GetText(key)
+                                        }
+                                    }
+                                }
+
+                            }
+                        }
+                    }
                 }
         }
     }
@@ -307,6 +400,16 @@ fun hideKeyboard(context: Context) {
         val inputConnection = context.currentInputConnection
         inputConnection?.finishComposingText()
         inputConnection.performEditorAction(EditorInfo.IME_ACTION_SEARCH)
-        context.setInputView(null)
     }
+}
+
+@Composable
+fun GetText(key: String) {
+    return Text(
+        text = key.toString(),
+        style = TextStyle(
+            fontSize = 24.sp,
+            color = Color.White
+        )
+    )
 }
