@@ -1,4 +1,4 @@
-package org.quicksc0p3r.discordtimestamp
+package org.`ce-007`.discordtimestamp
 
 import android.content.Context
 import android.view.inputmethod.EditorInfo
@@ -35,6 +35,10 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import kotlinx.datetime.Clock
+import org.ce_007.keyboardwithdiscordtimestamp.CurrentScreen
+import org.ce_007.keyboardwithdiscordtimestamp.IMEService
+import org.ce_007.keyboardwithdiscordtimestamp.Menu
+import org.ce_007.keyboardwithdiscordtimestamp.TimestampType
 
 
 @OptIn(ExperimentalMaterial3Api::class)

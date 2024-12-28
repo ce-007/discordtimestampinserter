@@ -9,7 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
         <activity
-            android:name="org.quicksc0p3r.discordtimestamp.MainActivity"
+            android:name="org.ce_007.keyboardwithdiscordtimestamp.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.AppCompat.NoActionBar"
             android:exported="true">
@@ -21,7 +21,7 @@
         </activity>
 
         <service
-            android:name="org.quicksc0p3r.discordtimestamp.IMEService"
+            android:name="org.ce_007.keyboardwithdiscordtimestamp.IMEService"
             android:label="@string/app_name"
 
             android:permission="android.permission.BIND_INPUT_METHOD"

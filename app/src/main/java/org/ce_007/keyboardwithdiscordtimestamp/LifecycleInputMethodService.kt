@@ -1,4 +1,4 @@
-package org.quicksc0p3r.discordtimestamp
+package org.ce_007.keyboardwithdiscordtimestamp
 
 import android.content.Intent
 import android.inputmethodservice.InputMethodService

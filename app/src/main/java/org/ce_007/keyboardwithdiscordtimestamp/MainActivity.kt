@@ -1,4 +1,4 @@
-package org.quicksc0p3r.discordtimestamp
+package org.ce_007.keyboardwithdiscordtimestamp
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -9,7 +9,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import org.quicksc0p3r.discordtimestamp.ui.theme.DiscordTimestampInserterTheme
+import org.ce_007.keyboardwithdiscordtimestamp.ui.theme.DiscordTimestampInserterTheme
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
